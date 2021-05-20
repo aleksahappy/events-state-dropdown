@@ -4,23 +4,16 @@ import './Dropdown.css';
 import Button from './Button/Button';
 import DropdownList from './DropdownList/DropdownList';
 
-export default function Dropdown({items}) {
-  const [state, setState] = useState({
-    open: false,
-    active: 'Account Settings'
-  });
-
+export default function Dropdown({items, selectedOption, onSelect}) {
+  const [isOpen, toggleOpen] = useState(false);
   const toggleDropdown = () => {
-    setState({...state, open: !state.open});
-  };
-  const selectItem = (itemValue) => {
-    setState({...state, active: itemValue});
+    toggleOpen(prev => !prev);
   };
 
   return (
-    <div className={`dropdown ${state.open && 'open'}`}>
-      <Button label={state.active} onToggle={toggleDropdown}/>
-      <DropdownList items={items} active={state.active} onSelect={selectItem}/>
+    <div className={`dropdown ${isOpen && 'open'}`}>
+      <Button label={selectedOption} onToggle={toggleDropdown}/>
+      <DropdownList items={items} selectedOption={selectedOption} onSelect={onSelect}/>
     </div>
   )
 }

@@ -4,14 +4,14 @@ import './Button.css';
 
 export default function Button({label, onToggle}) {
   return (
-    <button class="btn" onClick={() => onToggle()}>
+    <button className="btn" onClick={() => onToggle()}>
       <span>{label}</span>
-      <i class="material-icons">public</i>
+      <i className="material-icons">public</i>
     </button>
   )
 }
 
 Button.propTypes = {
-  active: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onToggle: PropTypes.func.isRequired
 };
